@@ -167,7 +167,6 @@ emerge --sync
 Emerge Git and configure your CPU flags:
 
 ```
-
 emerge -av vim eix app-eselect/eselect-repository dev-vcs/git
 ```
 
@@ -228,8 +227,8 @@ Edit fstab:
 You would obviously get your UUID:
 
 ```
-UUID=044502df-6f                                /efi           vfat            noauto,noatime  1 2
-LABEL=boot       /boot         ext4     defaults                   0 2
+UUID=044502df-6f                                /efi            vfat            noauto,noatime  1 2
+LABEL=boot                                      /boot           ext4            defaults        0 2
 LABEL=rootfs                                    /               btrfs           defaults        0 1
 ```
 
@@ -243,6 +242,8 @@ vim dracut.conf
 ```
 add_dracutmodules+=" crypt crypt-gpg btrfs dm rootfs-block "
 ```
+
+Here we're unlocking the root drive and we're also saving the crypt_key.luks.gpg file we created earlier in our boot drive. The first UUID would be the unlocked root partition and the second would be the crypt partition:
 
 ```
 kernel_cmdline+=" root=UUID=31d9edbd-643f-4bec-9d60-9eaae271d5e9  rd.luks.uuid=ec787b20-fb88-4a49-87ae-012417b1b865 rd.luks.key=/crypt_key.luks.gpg:UUID=20E3-B825 "
@@ -319,16 +320,12 @@ rc-update add sshd default
 rc-update add seatd
 rc-update add dbus
 rc-update add elogind
-rc-update add nfs
 rc-update add smartd
 rc-update add pcscd
 rc-update add syslog-ng
 rc-update add zfs-share
-rc-update add zfs-zed
 rc-update add libvirtd
 rc-update add libvirtd-guests
-rc-update add zfs-import boot
-rc-update add zfs-mount boot
 ```
 
 ## Grub and user configuration

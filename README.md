@@ -8,15 +8,14 @@ A simple guide of the major commands to run to install an Encrypted Gentoo syste
 First we'll securely wipe our drive, this is recommended even if your drives are brand new. Although it will take time even on an NVME drive. The recommended amount of times to pass it through would be three but you decide how many times you want to do it. The reason why we're doing this is to basically write over the free storage space with one's and zero's to make the data unrecoverable for rogue individuals.
 
 ```
-shred --verbose --random-source /dev/urandom --iterations 3 /dev/sdX
+shred --verbose --random-source /dev/urandom --iterations 3 /dev/nvme0n1
 ```
 
 
 Use fdisk to create three partitions; root, extended boot and efi:
 
 ```
-
-fdisk /dev/nvmexxx
+fdisk /dev/nvme0n1
 ```
 
 Use 'n' for new partition and give efi and boot 1G each to be on the safe side. Then press 't' for type and give them the following types:

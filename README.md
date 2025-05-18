@@ -2,6 +2,17 @@
 
 A simple guide of the major commands to run to install an Encrypted Gentoo system that can unlock with an opengpg configured Yubikey. We're also using Wayland so there will be some Wayland specific commands.
 
+## GPG Unlock Setup
+
+This guide assumes you're using a GPG key to unlock LUKS at boot. This can be done with:
+
+- A hardware token (YubiKey via OpenPGP)
+- A locally stored `.gpg` keyfile (e.g., on USB or boot partition)
+
+I followed [this excellent guide by Youtuber: "402 Payment Required"](https://www.youtube.com/playlist?list=PLmoQ11MXEmahVl_uJVH0-a3XJtMV59PBu) to generate keys securely using TailsOS and a clean environment. My implementation applies that setup to Gentoo via Dracut + smartcard modules.
+
+My goal here is to document the **Gentoo-specific wiring** and how to make GPG unlock work reliably with encrypted root partitions and early boot decryption.
+
 
 ## partition the disks 
 
